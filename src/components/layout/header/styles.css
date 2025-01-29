@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Pixed';
+    src: url('../../../assets//fonts/PublicPixel-z84yD.ttf') 
+    format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h2.logo{
+    font-family: 'Pixed', sans-serif;
+}
+
+
