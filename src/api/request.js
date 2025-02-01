@@ -5,7 +5,7 @@ async function requestData(endpoint) {
         method: 'GET',
         url: `https://free-to-play-games-database.p.rapidapi.com/api${endpoint}`,
         headers: {
-          'X-RapidAPI-Key': '5b852a4058msh374ec3f80e1ec10p1e0dffjsn4f2cae6308ac',
+          'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
           'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
         }
       };
@@ -18,7 +18,6 @@ async function requestData(endpoint) {
 
       return data
 }
-
 
 export const requestGameData = {
      getGameData: async() => {
@@ -67,28 +66,4 @@ export async function getGamesSorted(sort){
     const data = await requestData(`/games?&sort-by=${sort}`)
     return data
 }
-
-
-
-/* const api = axios.create({
-    baseURL: 'https://free-to-play-games-database.p.rapidapi.com/api',
-    timeout: 4000,
-})
-
-const Time = new Promise((resolve) => setTimeout(resolve, 5000))
-
-async function requestData(endpoint) {
-    await Time
-    const data = await api.get(endpoint, {
-    'X-RapidAPI-Key': '5b852a4058msh374ec3f80e1ec10p1e0dffjsn4f2cae6308ac',
-    'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
-  })
-    return data.data
-} */
-
-
-
-
-
-
 

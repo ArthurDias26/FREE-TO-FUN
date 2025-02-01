@@ -181,7 +181,7 @@ export default function Index() {
                         navigation={window.innerWidth > 1060 ? true : false} 
                         >
                             {gameData.screenshots.map((screenshot, index) =>(
-                                <SwiperSlide>
+                                <SwiperSlide key={index}>
                                     <img key={index} src={screenshot.image} alt={`${gameData.title} screenshot`}/>
                                 </SwiperSlide>
                             ))}
