@@ -313,17 +313,18 @@ export const GameScreenshots = styled.section`
         color: white !important;
         padding: 30px;
         transition: all .3s;
-        top: 22px !important;
-        border-radius: 12px 0 0 12px;
+        top: 24px !important;
         background-color: rgba(0, 0, 0, 0.45);
     }
 
     .swiper-button-prev{
         left: 0px;
+        border-radius: 12px 0 0 12px;
     }
 
     .swiper-button-next{
         right: 0px;
+        border-radius: 12px 0 12px 0;
     }
 
     .swiper-button-prev:hover, .swiper-button-next:hover{
