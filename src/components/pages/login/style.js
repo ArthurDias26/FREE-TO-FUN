@@ -35,8 +35,8 @@ export const LoginForm = styled.section`
         transition: all .2s;
     }
 
-    span.password_container svg:hover{
-        background-color: rgba(0, 0, 0, 0.6);
+    span.password_container svg{
+        user-select: none;
     }
 `
 

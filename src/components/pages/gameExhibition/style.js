@@ -293,32 +293,41 @@ export const GameScreenshots = styled.section`
         margin-bottom: 25px;
     }
 
-    div.screenshot_card_container{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: max-content;
-        max-width: 90vw;
+    div.swiper_container{
+        width: 80vw;
         margin: auto;
-        background-color: ${props => props.theme.primary};
-        padding: 15px;
-        border-radius: 10px;
+        padding-bottom: -4px;
+        box-shadow: 0 0 12px 8px rgba(0,0,0,0.45);
+        border-radius: 12px;
     }
 
-    div.screenshot_card{
-        max-width: 24vw;
-        cursor: pointer;
-        transform: scale(.95);
-        transition: all .25s;
-        img{
-            max-width: 100%;
-            border-radius: 14px;
+    div.swiper_container img{
+        width: 80vw;
+        border-radius: 12px;
+        transform: translateY(4px);
+    }
 
-        }
+    .swiper-button-prev, .swiper-button-next{
+        height: 100% !important;
+        width: 0 !important;
+        color: white !important;
+        padding: 30px;
+        transition: all .3s;
+        top: 22px !important;
+        border-radius: 12px 0 0 12px;
+        background-color: rgba(0, 0, 0, 0.45);
+    }
 
-        &:hover{
-            transform: scale(1);
-        }
+    .swiper-button-prev{
+        left: 0px;
+    }
+
+    .swiper-button-next{
+        right: 0px;
+    }
+
+    .swiper-button-prev:hover, .swiper-button-next:hover{
+        background-color: rgba(0, 0, 0, 0.85);
     }
 
     @media (max-width: 1060px) {
@@ -326,26 +335,12 @@ export const GameScreenshots = styled.section`
     }
 
     @media (max-width: 768px) {
-        div.screenshot_card_container{
-            flex-wrap: wrap;
+        div.swiper_container{
+            width: 90vw;
         }
 
-        div.screenshot_card{
-            max-width: 40vw;
+        div.swiper_container img{
+            width: 90vw;
         }
     }
-`
-
-export const ScreenshotImage = styled.div`
-    background-image: url(${props => props.url});
-    border: 3px solid ${props => props.theme.primary};
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    width: 85vw;
-    height: 44vw;
-    margin: auto;
-    margin-top: 30px;
-    border-radius: 15px;
 `

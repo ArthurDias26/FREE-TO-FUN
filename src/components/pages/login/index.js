@@ -58,15 +58,18 @@ export default function Index() {
               <Form>
 
                 <span htmlFor='name'>Username:</span>
-                <Field type='text' id='name' name='name'/>
+                <Field type='text' id='name' name='name' autoComplete='off'/>
                 <div className='error_message'><ErrorMessage name='name'/></div>
 
                 <span htmlFor='email'>E-mail Address:</span>
-                <Field type='email' id='email' name='email'/>
+                <Field type='email' id='email' name='email' autoComplete='off'/>
                 <div className='error_message'><ErrorMessage name='email'/></div>
 
                 <span htmlFor='password'>Password:</span>
-                <span className='password_container'><Field type={passwordType} id='password' name='password'/> {passwordType === 'password' ? <HiEyeOff onClick={() => passwordType === 'password' ? setPasswordType('text') : setPasswordType('password')}/> : <HiEye onClick={() => passwordType === 'password' ? setPasswordType('text') : setPasswordType('password')}/>}</span>
+                <span className='password_container'>
+                  <Field type={passwordType} id='password' name='password'/>
+                   {passwordType === 'password' ? <HiEyeOff onClick={() => passwordType === 'password' ? setPasswordType('text') : setPasswordType('password')}/> : <HiEye onClick={() => passwordType === 'password' ? setPasswordType('text') : setPasswordType('password')}/>}
+                </span>
                 <div className='error_message'><ErrorMessage name='password'/></div>
 
                 <button disabled={!isValid} className={isValid  ? 'valid' : ''} type='submit'>Create Account</button>

@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components";
+import styled from "styled-components";
 
 export const Header = styled.header`
     display: flex;
@@ -132,6 +132,7 @@ export const NavigateContainer = styled.nav`
 `
 
 export const ProfileContainer = styled.div`
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -169,10 +170,6 @@ export const ProfileContainer = styled.div`
 
     svg:hover{
         background-color: ${props => props.theme.secondary};
-    }
-
-    span.cart{
-        position: relative;
     }
 
     span.switch_button{
@@ -295,21 +292,19 @@ export const MobileMenu = styled.div`
 
 `
 
-export const Cart = styled.div`
+export const Favorite = styled.div`
     &.active{
-        display: block;
-        animation: showSmooth .5s;
+        left: 0;
     }
 
-    width: 24vw;
-    display: none;
+    width: 40vw;
+    height: calc(100vh - 48px);
     position: absolute;
     top: 48px;
-    left: -70%;
+    left: 50vw;
+    transition: all .6s;
     transform: translateX(-50%);
-    max-height: calc(65vh - 50px);
     overflow-y: scroll;
-    width: max-content;
     background-color: ${props => props.theme.primary};
     scrollbar-color: #333 lightgray;
     font-size: 16px;
@@ -326,14 +321,14 @@ export const Cart = styled.div`
     background-color: lightgray;    
     }
 
-    div.cart_container{
+    div.favorite_container{
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
 
-    div.cart_item{
+    div.favorite_item{
         position: relative;
         margin-bottom: 20px;
         transition: all .3s;
@@ -341,15 +336,15 @@ export const Cart = styled.div`
         width: 100%;
     }
 
-    div.cart_item:last-child{
+    div.favorite_item:last-child{
         margin-bottom: 0;
     }
 
-    div.cart_item:hover{
+    div.favorite_item:hover{
         background-color: ${props => props.theme.background};
     }
 
-    div.cart_item a{
+    div.favorite_item a{
         padding: 8px 8px 34px 20px;
         display: flex;
         align-items: center;
@@ -360,17 +355,17 @@ export const Cart = styled.div`
 
     }
 
-    div.cart_item img{
+    div.favorite_item img{
         max-width: 35%;
 
     }
 
-    div.cart_item h3{
+    div.favorite_item h3{
         font-size: 18px;
         margin-left: 12px;
     }
 
-    div.cart_item button{
+    div.favorite_item button{
         border: none;
         outline: none;
         background-color: ${props => props.theme.secondary};
@@ -387,20 +382,21 @@ export const Cart = styled.div`
         cursor: pointer;
     }
 
-    div.cart_item button:hover{
+    div.favorite_item button:hover{
         box-shadow: 0 0 24px ${props => props.theme.secondary};
     }
 
     p.no_games_message{
-        margin: 40px 20px;
+        margin-top: calc(50vh - 54px);
         color: ${props => props.theme.secondary};
         padding: 3px;
         border: 1px solid ${props => props.theme.secondary};
-        font-size: 16px;
+        font-size: 28px;
+        font-weight: bold;
         text-align: center;
     }
 
-    .clear_cart{
+    .clear_favorite{
         border: none;
         outline: none;
         text-align: center;
@@ -417,7 +413,7 @@ export const Cart = styled.div`
         box-shadow: 0 0 4px ${props => props.theme.secondary};
     }
 
-    .clear_cart:hover{
+    .clear_favorite:hover{
         box-shadow: 0 0 14px ${props => props.theme.secondary};
         text-decoration: underline;
     }
@@ -425,25 +421,53 @@ export const Cart = styled.div`
     @media (max-width: 1125px) {
         width: 35vw;
         border: 1px solid #555;
-        right: 0%;
+        height: max-content;
+        left: 10vw;
+        top: 60px;
+        bottom: 15px;
+        display: none;
+        
+
+        &.active{
+            display: block;
+            animation: showSmooth .5s;
+            left: 10vw;
+    }
+
+        p.no_games_message{
+            margin-top: 0;
+            font-size: 20px;
+        }
     }
 
     @media (max-width: 768px) {
         margin-left: 8px;
-        width: 55vw;
+        width: 50vw;
+        left: 13vw;
+        
 
-        div.cart_item button{
+        &.active{
+            left: 13vw;
+    }
+
+        div.favorite_item button{
         font-size: 14px;
         padding: 5px 10px;
         cursor: pointer;
     }
 
-    div.cart_contaner{
+    div.favorite_contaner{
         margin-top: 15px;
     }
     }
 
-    @media (max-width: 460px) {
-        width: 75vw;
+    @media (max-width: 480px) {
+        width: 60vw;
+        left: 18vw;
+        
+
+        &.active{
+            left: 18vw;
+    }
     }
 `

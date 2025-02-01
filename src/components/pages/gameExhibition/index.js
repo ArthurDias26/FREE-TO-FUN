@@ -3,14 +3,20 @@ import { useParams } from 'react-router-dom'
 
 import { getGameDetails, getCategoryGames } from '../../../api/request'
 
-import { Exhibition, GameBillboard, BackImage, GameInformation, GameInfoCard, GameDesc, GameMinimumRequirements, GameScreenshots, ScreenshotImage} from './style'
+import { Exhibition, GameBillboard, BackImage, GameInformation, GameInfoCard, GameDesc, GameMinimumRequirements, GameScreenshots} from './style'
 import Loading from '../../layout/loading'
 import Button from '../../layout/button'
 import GamesRow from '../../layout/gamesRow'
 
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/navigation'
+
 import { AuthContext } from '../../../contexts/AuthUserContext'
 
-import {FaAngleLeft, FaCartPlus, FaPlay} from 'react-icons/fa'
+import {FaAngleLeft, FaPlay} from 'react-icons/fa'
+import { MdFavorite } from "react-icons/md"
 
 import ResrveBackground from '../../../assets/image/reserve-background.png'
 
@@ -24,8 +30,6 @@ export default function Index() {
     const [categoryGames, setCategoryGames] = useState([])
 
     const {isLogged, AddCart} = useContext(AuthContext)
-
-    const [screenshotSelected, setScreenshotSelected] = useState()
 
     function AddItemCart() {
         if(isLogged){
@@ -92,7 +96,7 @@ export default function Index() {
 
                         <div className='buttons'>
                             <Button text='Play Now' url={gameData.game_url} icon={<FaPlay/>}/>
-                            <span onClick={AddItemCart}><Button text='Add to interests' icon={<FaCartPlus/>} color={'#4A27E3'} type='internal' /></span>
+                            <span onClick={AddItemCart}><Button text='Add to interests' icon={<MdFavorite/>} color={'#4A27E3'} type='internal' /></span>
                         </div>
 
                    </GameInfoCard>
@@ -167,23 +171,27 @@ export default function Index() {
 
             {gameData.screenshots.length >= 1 && (
                 <GameScreenshots>
+                    <h2>Game Images</h2>
+                    <div className='swiper_container'>
+                        <Swiper
+                        slidesPerGroup={1}
+                        slidesPerView={1}
+                        speed={500}
+                        modules={[Navigation]}
+                        navigation={window.innerWidth > 1060 ? true : false} 
+                        >
+                            {gameData.screenshots.map((screenshot, index) =>(
+                                <SwiperSlide>
+                                    <img key={index} src={screenshot.image} alt={`${gameData.title} screenshot`}/>
+                                </SwiperSlide>
+                            ))}
 
-                    <h2>Screenshots: </h2>
-
-                    <div className='screenshot_card_container'>
-                        {gameData.screenshots.map((screenshot, index) =>(
-                            <div key={index} className='screenshot_card' onClick={() => setScreenshotSelected(screenshot.image)}>
-                                <img src={screenshot.image} alt='screenshot'/>
-                            </div>
-                        ))}
+                        </Swiper>
                     </div>
-
-                    <ScreenshotImage url={screenshotSelected ? screenshotSelected : gameData.screenshots[0].image}>
-
-                    </ScreenshotImage>
-                         
                 </GameScreenshots>
             )}
+
+            
 
 
             {categoryGames.data ? (

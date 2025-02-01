@@ -6,8 +6,9 @@ import Button from '../button'
 
 import {Link} from 'react-router-dom'
 
-import {MdMonitor} from 'react-icons/md'
-import {FaChrome, FaCartPlus, FaPlay} from 'react-icons/fa'
+import {MdMonitor, MdFavorite} from 'react-icons/md'
+
+import {FaChrome, FaPlay} from 'react-icons/fa'
 
 import { AuthContext } from '../../../contexts/AuthUserContext'
 
@@ -66,7 +67,7 @@ export default function Index({gameId}) {
                     <div className='buttons'>
                         <Button text='Play Now' url={gameData.game_url} icon={<FaPlay/>}/>
 
-                        <span onClick={AddItemCart}><Button text={`Add to interests`} icon={<FaCartPlus/>} color={'#4A27E3'} type='internal' /></span>
+                        <span onClick={AddItemCart}><Button text={`Add to favorite`} icon={<MdFavorite/>} color={'#4A27E3'} type='internal' /></span>
                     </div>
 
                    

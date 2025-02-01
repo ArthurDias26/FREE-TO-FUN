@@ -4,14 +4,15 @@ import React, {useContext, useState, useEffect} from 'react'
 import ToggleThemeContext from '../../../contexts/ToggleThemeContext'
 import { AuthContext } from '../../../contexts/AuthUserContext'
 
-import {Header, IconContainer, NavigateContainer, ProfileContainer, MobileMenu, Cart} from './style'
+import {Header, IconContainer, NavigateContainer, ProfileContainer, MobileMenu, Favorite} from './style'
 import { Link} from 'react-router-dom'
 import Switch from "react-switch";
 import ErrorMessage from '../alertMessage'
 
 import './styles.css'
 
-import {FaSearch, FaCartArrowDown, FaSun, FaMoon} from 'react-icons/fa'
+import {FaSearch, FaSun, FaMoon, FaQuestion} from 'react-icons/fa'
+import { MdFavorite} from "react-icons/md";
 import {CgProfile} from 'react-icons/cg'
 import {HiMenu} from 'react-icons/hi'
 
@@ -24,7 +25,7 @@ export default function Index() {
 
   const {isLogged, Logout, cart, RemoveItemCart, ClearCart} = useContext(AuthContext)
 
-  const [cartItems, setCartItems] = useState([])
+  const [favoriteItems, setFavoriteItems] = useState([])
 
   const [alertMessage, setAlertMessage] = useState({})
 
@@ -32,7 +33,7 @@ export default function Index() {
 
   const [widthState, setWidthState] = useState(2.5)
 
-  const  [date, setDate] = useState(new Date)
+  const  [date, setDate] = useState(new Date())
 
     const setView = () => {
         setWidthState(window.innerWidth)       
@@ -45,10 +46,10 @@ export default function Index() {
     window.addEventListener('resize', setView)
 
     useEffect(() => {
-      setCartItems(JSON.parse(cart))
+      setFavoriteItems(JSON.parse(cart))
     }, [cart])
 
-    const VisibleCart = () =>{
+    const VisibleFavorite = () =>{
       if(!isLogged){
         setAlertMessage({
           title: 'Error',
@@ -58,7 +59,7 @@ export default function Index() {
         setAlertVisible(true)
       }
       else{
-        document.querySelector('#cart').classList.toggle('active')
+        document.querySelector('#favorite').classList.toggle('active')
       }
     }
 
@@ -120,17 +121,17 @@ export default function Index() {
 
         <Link to={'/search'}><FaSearch/></Link>
 
-        <span className='cart'>
-          <FaCartArrowDown onClick={VisibleCart}/>
+        <span className='favorite'>
+          <MdFavorite onClick={VisibleFavorite}/>
 
-          <Cart id='cart'>
+          <Favorite id='favorite'>
  
               {isLogged ? (
                 <>
-                {cartItems.length >= 1 ? (
-                <div className='cart_container'>
-                  {cartItems.map((item, index) => (
-                      <div className='cart_item' key={index}>
+                {favoriteItems.length >= 1 ? (
+                <div className='favorite_container'>
+                  {favoriteItems.map((item, index) => (
+                      <div className='favorite_item' key={index}>
                         <Link to={`/exhibition/${item.id}`}>
                         <img src={item.thumb} alt='thumb'/>
                         <h3>{item.title}</h3>
@@ -139,17 +140,21 @@ export default function Index() {
                         <button onClick={() => RemoveItemCart(item.id)}>Remove</button>
                       </div>
                   ))}
-                  <button className='clear_cart' onClick={() => ClearCart()}>Clear Cart</button>
+                  <button className='clear_favorite' onClick={() => ClearCart()}>Clear Favorite</button>
               </div>
               ) : (
-                <p className='no_games_message'>There are no saved games</p>
+                <p className='no_games_message'>
+                  <FaQuestion color='#ff0106'/>
+                  <br/>
+                  There are no saved games
+                </p>
               )} 
               </>
               ) : (
                 <></>
               )}    
            
-          </Cart>
+          </Favorite>
 
         </span>
 
@@ -206,17 +211,17 @@ export default function Index() {
 
         <Link to={'/search'}><FaSearch/></Link>
 
-        <span className='cart'>
-          <FaCartArrowDown onClick={VisibleCart}/>
+        <span className='favorite'>
+          <MdFavorite onClick={VisibleFavorite}/>
 
-          <Cart id='cart'>
+          <Favorite id='favorite'>
  
               {isLogged ? (
                 <>
-                {cartItems.length >= 1 ? (
-                <div className='cart_container'>
-                  {cartItems.map((item, index) => (
-                      <div className='cart_item' key={index}>
+                {favoriteItems.length >= 1 ? (
+                <div className='favorite_container'>
+                  {favoriteItems.map((item, index) => (
+                      <div className='favorite_item' key={index}>
                         <Link to={`/exhibition/${item.id}`}>
                         <img src={item.thumb} alt='thumb'/>
                         <h3>{item.title}</h3>
@@ -225,17 +230,21 @@ export default function Index() {
                         <button onClick={() => RemoveItemCart(item.id)}>Remove</button>
                       </div>
                   ))}
-                  <button className='clear_cart' onClick={() => ClearCart()}>Clear Cart</button>
+                  <button className='clear_favorite' onClick={() => ClearCart()}>Clear Favorite</button>
               </div>
               ) : (
-                <p className='no_games_message'>There are no saved games</p>
+                <p className='no_games_message'>
+                  <FaQuestion color='#ff0106'/>
+                  <br/>
+                  There are no saved games
+                </p>
               )} 
               </>
               ) : (
                 <></>
               )}    
            
-          </Cart>
+          </Favorite>
 
         </span>
 

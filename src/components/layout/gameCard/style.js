@@ -24,7 +24,7 @@ export const GameCard = styled.div`
     }
 
     img{
-        width: 100.5%;
+        width: 100%;
         border-radius: 20px;
 
     }
