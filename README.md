@@ -41,7 +41,6 @@ To run this application on your machine, make sure you have met all the prerequi
 
 <h3>Prerequisites</h3>
 
-Here you list all prerequisites necessary for running your project. For example:
 
 - [NodeJS](https://nodejs.org/en)
 - [Git](https://git-scm.com/downloads)
