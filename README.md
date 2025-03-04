@@ -4,7 +4,7 @@
 [HTML__BADGE]: https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white
 [CSS__BADGE]: https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff
 [PROJECT__BADGE]: https://img.shields.io/badge/📱Visit_this_project-000?style=for-the-badge&logo=project
-[PROJECT__URL]: free-to-fun.vercel.app
+[PROJECT__URL]: https://free-to-fun.vercel.app/
 
 <h1 align="center" style="font-weight: bold;">FREE TO FUN 💻</h1>
 
